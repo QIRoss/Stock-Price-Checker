@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express     = require('express');
 const cors        = require('cors');
-
+const helmet      = require('helmet');
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
@@ -15,7 +15,12 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(helmet.contentSecurityPolicy({
+	directives:{
+		scriptSrc: ["'self'"],
+		styleSrc: ["'self'"]
+	}
+}));
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
