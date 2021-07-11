@@ -55,7 +55,7 @@ module.exports = function (app) {
         const model1 = await Stock.findOneAndUpdate(query1, update1, options);
         const model2 = await Stock.findOneAndUpdate(query2, update2, options);
         const rel = model1.likes - model2.likes;
-        
+
         res.json({
           stockData: [
             {

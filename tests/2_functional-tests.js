@@ -31,6 +31,7 @@ suite('Functional Tests', function() {
     })
 
     // ip saver not implemented on schema
+    // change schema to save an array of req.ip's and check if actual req.ip includes it
     test('Viewing the same stock and liking it again: GET request to /api/stock-prices/', done => {
         chai.request(server)
         .get('/api/stock-prices?stock=GOOG&like=true')
